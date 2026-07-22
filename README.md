@@ -6,10 +6,10 @@ os conteiner serão testar manual.
 
 docker run -it -p -v image 
 
-AS imagem serão criadas dentro do debian FROM debian:boorkworm, deste como vamos enviar os file de configuração dentro de debian e configurar la o servico: é uma abordagem mais técnica, porém é o habiatual;
+root@organon:/home/xxxx/Documents/Agenda-medica/project# docker exec -it flask bash
+root@b657a9945b4c:/app/tools# print
+printenv  printf    
+root@b657a9945b4c:/app/tools# printenv SECRET_KEY
+123456789
+root@b657a9945b4c:/app/tools# 
 
-Quando o mariadb há dois modelos, criar o user dentro
-do entrypoint.sh com script em bash, ou criar o user 
-com init.sql, nenhum me ausentaria de executar SQL,
-e atendo o tempo, com um script bash requeriria mais
-complexidade. 
