@@ -1,37 +1,31 @@
 console.log("Agenda Médica carregada");
 
 
-async function loadAppointments() {
+async function carregarAgenda(){
 
     const container = document.getElementById("appointments");
-
-    if (!container) {
-        return;
-    }
 
 
     try {
 
-        const response = await fetch(
-            "http://localhost:5001/appointments"
-        );
+        const response = await fetch("/api/agendamentos");
 
 
-        if (!response.ok) {
-            throw new Error(
-                "Erro ao carregar agendamentos"
-            );
+        if (!response.ok){
+            throw new Error("Erro ao buscar agenda");
         }
 
 
-        const appointments = await response.json();
+        const result = await response.json();
+
+
+        const agendamentos = result.dados;
 
 
         container.innerHTML = "";
 
 
-        appointments.forEach(item => {
-
+        agendamentos.forEach(item => {
 
             const card = document.createElement("div");
 
@@ -40,11 +34,13 @@ async function loadAppointments() {
 
             card.innerHTML = `
 
-                <h3>${item.paciente}</h3>
+                <h3>
+                    ${item.medico}
+                </h3>
 
                 <p>
-                    Médico:
-                    ${item.medico}
+                    Paciente:
+                    ${item.paciente}
                 </p>
 
                 <p>
@@ -76,16 +72,16 @@ async function loadAppointments() {
         });
 
 
-    } catch(error) {
+    } catch(error){
 
         console.error(
             "Erro:",
             error
         );
 
-
         container.innerHTML =
-            "<p>Erro ao carregar agenda.</p>";
+        "<p>Erro ao carregar agenda.</p>";
+
     }
 
 }
@@ -93,5 +89,5 @@ async function loadAppointments() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    loadAppointments
+    carregarAgenda
 );
