@@ -32,7 +32,7 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
 
-    identifier = request.form.get("identifier", "").strip()
+    identifier = request.form.get("username", "").strip()
     password = request.form.get("password", "")
 
     try:

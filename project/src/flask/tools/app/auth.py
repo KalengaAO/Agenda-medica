@@ -23,7 +23,7 @@ def validate_login(identifier, password):
     DatabaseUnavailableError para falhas de acesso ao banco.
     """
     if not identifier or not password:
-        raise AuthError("Informe usuário/e-mail e senha.")
+        raise AuthError("Informe usuário e senha.")
 
     try:
         conn = get_connection()

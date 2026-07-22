@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 
-
 {% block title %}
 Login
 {% endblock %}
-
-
 
 {% block content %}
 
 <div class="login-box">
 
 <h2>Entrar</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
 
 <form method="POST">
@@ -44,6 +51,5 @@ Entrar
 </form>
 
 </div>
-
 
 {% endblock %}
