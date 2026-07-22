@@ -1,4 +1,4 @@
-name: agenda
+name: agenda-medica
 
 services:
 
@@ -42,6 +42,11 @@ services:
 
 volumes:
   mariadb-data:
+     drivers: local
+     driver_opts:
+      type: none
+      o: bind
+      device: /home/interview/mariadb
 
 networks:
-  agenda-network:
+  agenda-medica:
