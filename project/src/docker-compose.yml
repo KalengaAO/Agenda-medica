@@ -1,11 +1,47 @@
-nome: agenda_medica
+name: agenda
 
 services:
 
+  mariadb:
+    build: ./mariadb
+    container_name: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - agenda-network
 
+  api:
+    build: ./api
+    container_name: api
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    ports:
+      - "5001:5001"
+    networks:
+      - agenda-network
 
-networks:
-
-
+  flask:
+    build: ./flask
+    container_name: flask
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+      - api
+    ports:
+      - "5000:5000"
+    networks:
+      - agenda-network
 
 volumes:
+  mariadb-data:
+
+networks:
+  agenda-network:
