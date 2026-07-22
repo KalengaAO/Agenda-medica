@@ -31,5 +31,7 @@ usuarios
 sqlite> SELECT password_hash FROM usuarios;
 scrypt:32768:8:1$xD2Pk5RR23VQ1WM0$0000000000000000000000
 
-sqlite> 
+sqlite> SELECT id, username, email FROM usuarios;
+1|medico.teste|medico.teste@timesaver.com.br
+
 
