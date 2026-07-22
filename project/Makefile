@@ -1,13 +1,10 @@
 NAME            = agenda-medica
 
 COMPOSE_FILE    = src/docker-compose.yml
-DATA_DIR        = /home/interview/mariadb
-
 
 all: up
 
 up:
-	@mkdir -p $(DATA_DIR)
 	@docker compose -f $(COMPOSE_FILE) up -d --build
 
 down:

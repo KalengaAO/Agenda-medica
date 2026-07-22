@@ -1,26 +1,29 @@
-name: agenda-medica
 
 services:
 
-  mariadb:
-    build: ./mariadb
-    container_name: mariadb
+  api:
+    build: ./api
+    container_name: api
     restart: always
     env_file:
       - .env
-    volumes:
-      - mariadb-data:/var/lib/mysql
+    ports:
+      - "5001:5001"
     networks:
-      - agenda-medica
+      - agenda-network
 
- 
-volumes:
-  mariadb-data:
-     driver: local
-     driver_opts:
-      type: none
-      o: bind
-      device: /home/interview/mariadb
+  flask:
+    build: ./flask
+    container_name: flask
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - api
+    ports:
+      - "5000:5000"
+    networks:
+      - agenda-network
 
 networks:
-  agenda-medica:
+  agenda-network:

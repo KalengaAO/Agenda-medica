@@ -1,12 +1,8 @@
-#! /bin/sh
+#!/bin/sh
+set -e
 
-set -e 
-echo "aguardando mariadb"
+echo "[flask] Preparando banco de dados (migração/seed)..."
+python -m app.seed
 
-until nc -z mairiadb 3306; do
-    sleep 1
-done
-
-echo "mariadb está pronto"
-
-exec $@
+echo "[flask] Iniciando aplicação Agenda Médica..."
+exec gunicorn -c /app/conf/gunicorn.conf.py run:app
