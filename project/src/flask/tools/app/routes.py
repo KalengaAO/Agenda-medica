@@ -58,7 +58,7 @@ def logout():
 @bp.route("/agenda")
 @login_required
 def agenda():
-    return render_template("agenda.html", user=session["user"])
+    return render_template("dashboard.html", user=session["user"])
 
 
 @bp.route("/api/agendamentos")
