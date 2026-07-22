@@ -11,38 +11,12 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
     networks:
-      - agenda-network
+      - agenda-medica
 
-  api:
-    build: ./api
-    container_name: api
-    restart: always
-    env_file:
-      - .env
-    depends_on:
-      - mariadb
-    ports:
-      - "5001:5001"
-    networks:
-      - agenda-network
-
-  flask:
-    build: ./flask
-    container_name: flask
-    restart: always
-    env_file:
-      - .env
-    depends_on:
-      - mariadb
-      - api
-    ports:
-      - "5000:5000"
-    networks:
-      - agenda-network
-
+ 
 volumes:
   mariadb-data:
-     drivers: local
+     driver: local
      driver_opts:
       type: none
       o: bind
